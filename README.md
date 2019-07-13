@@ -10,6 +10,9 @@ vista is a helper class module for excel VBA use. It could assit you in repeatin
 
 vista will perform as a worksheet wrapper for a specific worksheet and provide many useful functions and subs to interact with worksheet.
 
+1. **please download `Vista.cls` from [Vista](https://gist.github.com/1846689910/f1767e08f081bb11a9fc2a8d35018166)**
+2. **`import` the module in your VBA project**
+
 ## initialization
 
 ```vb
