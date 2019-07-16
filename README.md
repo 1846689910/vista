@@ -27,14 +27,39 @@ End Sub
 
 ### Function
 
-+ `getLastRow()`: get the latest last row number of the worksheet
-+ `getLastCol()`: get the latest last column number of the worksheet
-+ `removeRow(i)`: remove the i th row
-+ `removeCol(i)`: remove the i th column
-+ `getFirstNonEmptyCell()`: return `Array(row as Long, col as Long)` to represent the position of the first non empty cell in worksheet
-+ `colLetterToNum(s)`: column letter to number
-+ `colNumToLetter(n)`: column number to letter
-+ `indexOf(searchRow as Long, searchCol as Long, target as String)`: 
-    - if searchRow = -1, searchCol > 0, find the first cell in `searchCol` that contains `target` in content
-    - if searchRow > 0, searchCol = -1, find the first cell in `searchRow` that contains `target` in content
-    - if searchRow > 0 And searchCol > 0, start from (searchRow, searchCol)find the first cell in whole worksheet that contains `target` in content
+#### `getLastRow()`
+
+- get the latest last row number of the worksheet
+
+#### `getLastCol()`
+
+- get the latest last column number of the worksheet
+
+#### `removeRow(i as Long)`
+
+- remove the i th row
+
+#### `removeCol(i as Long)`
+
+- remove the i th column
+
+#### `getFirstNonEmptyCell() as Variant`
+
+- return `Array(row as Long, col as Long)` to represent the position of the first non empty cell in worksheet
+- if found, return `Array(row, col)`, otherwise return `Array(-1, -1)`
+
+#### `colLetterToNum(s) as Integer`
+
+- column letter to number
+
+#### `colNumToLetter(n) as String`
+
+- column number to letter
+
+#### `indexOf(searchRow as Long, searchCol as Long, target as String) as Variant`
+
+- find first cell that contains `target` in content, return cell position `Array(row as Long, col as Long)`
+- if `searchRow = -1` and `searchCol > 0`, **only** search in `searchCol`
+- if `searchRow > 0` and `searchCol = -1`, **only** search in `serachRow`
+- if `searchRow > 0` and `searchCol > 0`, start from `(searchRow, searchCol)` find the first cell in whole worksheet
+- if found return `Array(row, col)`, otherwise return `Array(-1, -1)`
