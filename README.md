@@ -1,6 +1,6 @@
 # vista
 
-###### VERSION 1.0.2 CLASS
+###### VERSION 1.0.3 CLASS
 
 ## introduction
 
