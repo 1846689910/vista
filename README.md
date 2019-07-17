@@ -81,3 +81,5 @@ End Sub
 - if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
 - if not found, return empty ArrayList
 
+#### `newArrayList() As Object`
+- return a new instance of `System.Collections.ArrayList`
