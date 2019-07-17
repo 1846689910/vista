@@ -1,4 +1,4 @@
-VERSION 1.0 CLASS
+VERSION 1.0.3 CLASS
 BEGIN
   MultiUse = -1  'True
 END
