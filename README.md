@@ -35,6 +35,11 @@ End Sub
 
 - get the latest last column number of the worksheet
 
+#### `sync()`
+
+- manually trigger properties update for the worksheet, include `lastRow` and `lastCol`
+- should be used especially after the worksheet was directly manipulated by user insteadof operated through `vista`
+
 #### `removeRow(i as Long)`
 
 - remove the i th row
@@ -56,10 +61,23 @@ End Sub
 
 - column number to letter
 
-#### `indexOf(searchRow as Long, searchCol as Long, target as String) as Variant`
+#### `rowIndexOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Variant`
+- return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchRow` and searched from `startCol` that contains content `target`
+- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
+- if not found, return `Array(-1, -1)`
 
-- find first cell that contains `target` in content, return cell position `Array(row as Long, col as Long)`
-- if `searchRow = -1` and `searchCol > 0`, **only** search in `searchCol`
-- if `searchRow > 0` and `searchCol = -1`, **only** search in `serachRow`
-- if `searchRow > 0` and `searchCol > 0`, start from `(searchRow, searchCol)` find the first cell in whole worksheet
-- if found return `Array(row, col)`, otherwise return `Array(-1, -1)`
+#### `rowIndicesOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Object`
+- return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchRow` and searched from `startCol` that contains content `target`
+- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
+- if not found, return empty ArrayList
+
+#### `colIndexOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Variant`
+- return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchCol` and searched from `startRow` that contains content `target`
+- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
+- if not found, return `Array(-1, -1)`
+
+#### `colIndicesOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Object`
+- return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchCol` and searched from `startRow` that contains content `target`
+- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
+- if not found, return empty ArrayList
+
