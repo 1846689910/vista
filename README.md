@@ -62,24 +62,49 @@ End Sub
 - column number to letter
 
 #### `rowIndexOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Variant`
+
 - return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchRow` and searched from `startCol` that contains content `target`
 - if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
 - if not found, return `Array(-1, -1)`
 
 #### `rowIndicesOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Object`
+
 - return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchRow` and searched from `startCol` that contains content `target`
 - if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
 - if not found, return empty ArrayList
 
 #### `colIndexOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Variant`
+
 - return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchCol` and searched from `startRow` that contains content `target`
 - if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
 - if not found, return `Array(-1, -1)`
 
 #### `colIndicesOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Object`
+
 - return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchCol` and searched from `startRow` that contains content `target`
 - if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
 - if not found, return empty ArrayList
 
 #### `newArrayList() As Object`
+
 - return a new instance of `System.Collections.ArrayList`
+
+#### `newDictionary() As Object`
+
+- return a new instance of `Scripting.Dictionary`
+
+#### `newHashtable() As Object`
+
+- return a new instance of `System.Collections.Hashtable`
+
+#### `hashtableKeys(Object hashtable) As Object`
+
+- return an `ArrayList<Key>` in hashtable
+
+#### `hashtableValues(Object hashtable) As Object`
+
+- return an `ArrayList<Value>` in hashtable
+
+#### `hashtableEntries(Object hashtable) As Object`
+
+- return an `ArrayList<Array(Key, Value)>` in hashtable
