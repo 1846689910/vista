@@ -18,8 +18,10 @@ vista will perform as a worksheet wrapper for a specific worksheet and provide m
 ```vb
 Option Explicit
 Sub main()
-  Dim vWs As New Vista ' create a new vista wrapper
-  vWs.init Sheet1 ' initialize the vista wrapper instance with worksheet
+  Dim vws As New Vista ' create a new vista wrapper
+  Dim startCell As Variant
+  vws.init Sheet1 ' initialize the vista wrapper instance with worksheet
+  startCell = vws.getFirstNonEmptyCell()
 End Sub
 ```
 
