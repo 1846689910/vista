@@ -1,4 +1,4 @@
-VERSION 1.0.3 CLASS
+VERSION 1.0.4 CLASS
 BEGIN
   MultiUse = -1  'True
 END
@@ -122,6 +122,38 @@ End Function
 
 Public Function newArrayList() As Object
     Set newArrayList = CreateObject("System.Collections.ArrayList")
+End Function
+
+Public Function newDictionary() As Object
+    Set newDictionary = CreateObject("Scripting.Dictionary")
+End Function
+
+Public Function newHashtable() As Object
+    Set newHashtable = CreateObject("System.Collections.Hashtable")
+End Function
+
+Public Function hashtableKeys(ByRef hashtable As Object) As Object
+    Dim keys As Object
+    Set keys = newArrayList()
+    keys.addRange (hashtable.keys)
+    Set hashtableKeys = keys
+End Function
+
+Public Function hashtableValues(ByRef hashtable As Object) As Object
+    Dim values As Object
+    Set values = newArrayList()
+    values.addRange (hashtable.values)
+    Set hashtableValues = values
+End Function
+
+Public Function hashtableEntries(ByRef hashtable As Object) As Object
+    Dim entries As Object
+    Dim i As Long
+    Set entries = hashtableKeys(hashtable)
+    For i = 0 To entries.Count - 1
+        entries(i) = Array(entries(i), hashtable(entries(i)))
+    Next i
+    Set hashtableEntries = entries
 End Function
 
 ' ///////////////////////////////////////////////////////////
