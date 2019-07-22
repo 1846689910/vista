@@ -27,86 +27,54 @@ End Sub
 
 ## API
 
-### Function
+###### return `Void` means a `Sub`
 
-#### `getLastRow()`
+### Methods
 
-- get the latest last row number of the worksheet
+#### Critical
 
-#### `getLastCol()`
+| Return    | Method                                                                                                                                                                                                                   |
+| --------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Void`    | `init(Worksheet ws)` <br/> initialize the created `Vista` instance and hook the instance with the specified Worksheet `ws`                                                                                               |
+| `Void`    | `sync()`<br/>manually trigger properties update for the worksheet, include `lastRow` and `lastCol`<br/>should be used especially after the worksheet was directly manipulated by user insteadof operated through `vista` |
+| `Varaint` | `getFirstNonEmptyCell()`<br/>return `Array(row as Long, col as Long)` to represent the position of the first non empty cell in worksheet<br/>if found, return `Array(row, col)`, otherwise return `Array(-1, -1)`        |
 
-- get the latest last column number of the worksheet
+#### Row
 
-#### `sync()`
+| Return    | Method                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Long`    | `getLastRow()`<br/>get the latest last row number of the worksheet                                                                                                                                                                                                                                                                                                                                                                                               |
+| `Void`    | `removeRow(Long i)`<br/>remove the i th row                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Varaint` | `rowIndexOf(Long searchRow, Long startCol, String target, Optional Boolean exactMatch = False)`<br/>return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchRow` and searched from `startCol` that contains content `target`<br/>if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>if not found, return `Array(-1, -1)`                     |
+| `Object`  | `rowIndicesOf(Long searchRow, Long startCol, String target, Optional Boolean exactMatch = False)`<br/>return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchRow` and searched from `startCol` that contains content `target`<br/>if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>if not found, return empty ArrayList |
 
-- manually trigger properties update for the worksheet, include `lastRow` and `lastCol`
-- should be used especially after the worksheet was directly manipulated by user insteadof operated through `vista`
+#### Column
 
-#### `removeRow(i as Long)`
+| Return    | Method                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Long`    | `getLastCol()`<br/>get the latest last column number of the worksheet                                                                                                                                                                                                                                                                                                                                                                                          |
+| `Void`    | `removeCol(Long i)`<br/>remove the i th column                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `Varaint` | `colIndexOf(Long searchCol, Long startRow, String target, Optional Boolean exactMatch = False)`<br/>return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchCol` and searched from `startRow` that contains content `target`<br/>if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>if not found, return `Array(-1, -1)`                   |
+| `Object`  | `colIndexOf(Long searchCol, Long startRow, String target, Optional Boolean exactMatch = False)`<br/>return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchCol` and searched from `startRow` that contains content `target`<br/>if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>if not found, return empty ArrayList |
 
-- remove the i th row
+#### Worksheet
 
-#### `removeCol(i as Long)`
+#### Workbook
 
-- remove the i th column
+#### Utils
 
-#### `getFirstNonEmptyCell() as Variant`
+| Return    | Method                                                   |
+| --------- | :------------------------------------------------------- |
+| `Integer` | `colLetterToNum(String s)` <br/>column letter to number  |
+| `String`  | `colNumToLetter(Integer n)` <br/>column number to letter |
 
-- return `Array(row as Long, col as Long)` to represent the position of the first non empty cell in worksheet
-- if found, return `Array(row, col)`, otherwise return `Array(-1, -1)`
+#### Data Structure
 
-#### `colLetterToNum(s) as Integer`
-
-- column letter to number
-
-#### `colNumToLetter(n) as String`
-
-- column number to letter
-
-#### `rowIndexOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Variant`
-
-- return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchRow` and searched from `startCol` that contains content `target`
-- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
-- if not found, return `Array(-1, -1)`
-
-#### `rowIndicesOf(searchRow As Long, startCol As Long, target As String, Optional exactMatch As Boolean = False) as Object`
-
-- return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchRow` and searched from `startCol` that contains content `target`
-- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
-- if not found, return empty ArrayList
-
-#### `colIndexOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Variant`
-
-- return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchCol` and searched from `startRow` that contains content `target`
-- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
-- if not found, return `Array(-1, -1)`
-
-#### `colIndicesOf(searchCol As Long, startRow As Long, target As String, Optional exactMatch As Boolean = False) As Object`
-
-- return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchCol` and searched from `startRow` that contains content `target`
-- if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`
-- if not found, return empty ArrayList
-
-#### `newArrayList() As Object`
-
-- return a new instance of `System.Collections.ArrayList`
-
-#### `newDictionary() As Object`
-
-- return a new instance of `Scripting.Dictionary`
-
-#### `newHashtable() As Object`
-
-- return a new instance of `System.Collections.Hashtable`
-
-#### `hashtableKeys(Object hashtable) As Object`
-
-- return an `ArrayList<Key>` in hashtable
-
-#### `hashtableValues(Object hashtable) As Object`
-
-- return an `ArrayList<Value>` in hashtable
-
-#### `hashtableEntries(Object hashtable) As Object`
-
-- return an `ArrayList<Array(Key, Value)>` in hashtable
+| Return   | Method                                                                                         |
+| -------- | :--------------------------------------------------------------------------------------------- |
+| `Object` | `newArrayList()`<br/>return a new instance of `System.Collections.ArrayList`                   |
+| `Object` | `newDictionary()`<br/>return a new instance of `Scripting.Dictionary`                          |
+| `Object` | `newHashtable()`<br/>return a new instance of `System.Collections.Hashtable`                   |
+| `Object` | `hashtableKeys(Object hashtable)`<br/>return an `ArrayList<Key>` in hashtable                  |
+| `Object` | `hashtableValues(Object hashtable)`<br/>return an `ArrayList<Value>` in hashtable              |
+| `Object` | `hashtableEntries(Object hashtable)`<br/>return an `ArrayList<Array(Key, Value)>` in hashtable |
