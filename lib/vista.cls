@@ -1,4 +1,4 @@
-VERSION 1.1.0 CLASS
+VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
@@ -70,7 +70,7 @@ Public Function ColLetterToNum(ByVal sColLetter As String) As Integer
     ColLetterToNum = ActiveWorkbook.Worksheets(1).Columns(sColLetter).Column
 End Function
 
-Public Function ColNumToLetter(lColNum As Long) As String
+Public Function ColNumToLetter(lColNum As Integer) As String
     ColNumToLetter = Split(cells(1, lColNum).Address, "$")(1)
 End Function
 Public Function rowIndexOf(ByVal searchRow As Long, ByVal startCol As Long, ByVal target As String, Optional ByVal exactMatch As Boolean = False) As Variant
