@@ -250,7 +250,7 @@ Public Sub removeWorksheet(ByRef wb As Workbook, ByVal name As String)
 End Sub
 
 Public Function getAllFilenames(ByVal path As String) As Object
-    Set getAllFilenames = getAllFilePaths_R(path, needPath:=False, level:=1)
+    Set getAllFilenames = getAllFilePaths_R(path, needPath:=False, level:=0)
 End Function
 
 Public Function getAllFilePaths_R(ByVal path As String, Optional ByVal needPath As Boolean = True, Optional ByVal level As Variant) As Object
@@ -260,7 +260,7 @@ Public Function getAllFilePaths_R(ByVal path As String, Optional ByVal needPath 
     If IsMissing(level) Then
         Set fs = newFs()
         getAllFilePathsHelper fs.getFolder(path), list, needPath
-    ElseIf level < 1 Then GoTo finish
+    ElseIf level < 0 Then GoTo finish
     Else
         Set fs = newFs()
         getAllFilePathsHelper fs.getFolder(path), list, needPath, level:=level
@@ -269,10 +269,10 @@ finish:
     Set getAllFilePaths_R = list
 End Function
 
-Private Sub getAllFilePathsHelper(ByRef folder As Variant, ByRef list As Object, ByVal needPath As Boolean, Optional ByRef level As Variant)
+Private Sub getAllFilePathsHelper(ByRef folder As Variant, ByRef list As Object, ByVal needPath As Boolean, Optional ByVal level As Variant)
     Dim file As Variant
     If Not IsMissing(level) Then
-        If level <= 1 Then GoTo enough
+        If level <= 0 Then GoTo enough
         level = level - 1
     End If
     Dim subFolder As Variant
@@ -290,7 +290,7 @@ enough:
 End Sub
 
 Public Function getAllSubDirs(ByVal path As String) As Object
-    Set getAllSubDirs = getAllSubDirs_R(path, needPath:=False, level:=1)
+    Set getAllSubDirs = getAllSubDirs_R(path, needPath:=False, level:=0)
 End Function
 
 Public Function getAllSubDirs_R(ByVal path As String, Optional ByVal needPath As Boolean = True, Optional ByVal level As Variant) As Object
@@ -300,7 +300,7 @@ Public Function getAllSubDirs_R(ByVal path As String, Optional ByVal needPath As
     If IsMissing(level) Then
         Set fs = newFs()
         getAllSubDirsHelper fs.getFolder(path), list, needPath
-    ElseIf level < 1 Then GoTo finish
+    ElseIf level < 0 Then GoTo finish
     Else
         Set fs = newFs()
         getAllSubDirsHelper fs.getFolder(path), list, needPath, level:=level
@@ -309,9 +309,9 @@ finish:
     Set getAllSubDirs_R = list
 End Function
 
-Private Sub getAllSubDirsHelper(ByRef folder As Variant, ByRef list As Object, ByVal needPath As Boolean, Optional ByRef level As Variant)
+Private Sub getAllSubDirsHelper(ByRef folder As Variant, ByRef list As Object, ByVal needPath As Boolean, Optional ByVal level As Variant)
     If Not IsMissing(level) Then
-        If level < 1 Then GoTo enough
+        If level < 0 Then GoTo enough
         level = level - 1
     End If
     Dim subFolder As Variant
