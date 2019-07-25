@@ -1,6 +1,6 @@
 # vista
 
-###### VERSION 1.1.0 CLASS
+###### VERSION 1.1.1 CLASS
 
 ## introduction
 
@@ -10,7 +10,7 @@ vista is a helper class module for excel VBA use. It could assit you in repeatin
 
 vista will perform as a worksheet wrapper for a specific worksheet and provide many useful functions and subs to interact with worksheet.
 
-1. **please download `Vista.cls` from [Vista](https://github.com/1846689910/vista/releases/download/v1.1.0/vista.cls)**
+1. **please download `Vista.cls` from [Vista](https://github.com/1846689910/vista/releases/download/v1.1.1/vista.cls)**
 2. **use `import file` to import the module in your VBA project**
 
 ## initialization
