@@ -12,11 +12,14 @@ Option Explicit
 Private prLastRow As Long
 Private prLastCol As Long
 Private prWs As Worksheet
+Private initialized As Boolean
 
 ' initialize
 Public Sub init(ByRef sheet As Worksheet)
+    If initialized Then Exit Sub
     Set prWs = sheet
     sync
+    initialized = True
 End Sub
 
 ' if the user directly manipulate the worksheet, then this method could be used to sync the latest properties of worksheet
