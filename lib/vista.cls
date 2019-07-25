@@ -66,13 +66,27 @@ found:
     getFirstNonEmptyCell = cell
 End Function
 
-Public Function ColLetterToNum(ByVal sColLetter As String) As Integer
-    ColLetterToNum = ActiveWorkbook.Worksheets(1).Columns(sColLetter).Column
+Function colNumToLetter(ByVal n As Long) As String
+    Dim s As String
+    s = ""
+    While n > 0
+        n = n - 1
+        s = s & Chr(Asc("A") + n Mod 26)
+        n = Application.WorksheetFunction.RoundDown(n / 26, 0)
+    Wend
+    colNumToLetter = StrReverse(s)
 End Function
 
-Public Function ColNumToLetter(lColNum As Integer) As String
-    ColNumToLetter = Split(cells(1, lColNum).Address, "$")(1)
+Function colLetterToNum(ByVal s As String) As Long
+    Dim n As Long
+    Dim i As Integer
+    n = 0
+    For i = 1 To Len(s)
+        n = 26 * n + (Asc(Mid(s, i, 1)) - Asc(Mid("A", 1, 1)) + 1)
+    Next i
+    colLetterToNum = n
 End Function
+
 Public Function rowIndexOf(ByVal searchRow As Long, ByVal startCol As Long, ByVal target As String, Optional ByVal exactMatch As Boolean = False) As Variant
     Dim cell As Variant
     Dim i As Long
@@ -139,7 +153,7 @@ Public Function getRowColFromRangeSelector(ByVal selector As String) As Variant
 End Function
 
 Public Function getRangeSelectorFromRowCol(ByRef rowCol As Variant) As String
-    getRangeSelectorFromRowCol = ColNumToLetter(CLng(rowCol(1))) & rowCol(0)
+    getRangeSelectorFromRowCol = colNumToLetter(CLng(rowCol(1))) & rowCol(0)
 End Function
 
 Public Sub mkDir(ByVal path As String)
