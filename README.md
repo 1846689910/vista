@@ -61,11 +61,13 @@ End Sub
 
 #### Worksheet
 
-| Return    | Method                                                                                                        |
-| --------- | :------------------------------------------------------------------------------------------------------------ |
-| `Boolean` | **`hasWorksheet(Workbook wb, String name)`**<br/>&bull; if the workbook `wb` contains a worksheet with `name` |
-| `Void`    | **`addWorksheet(Workbook wb, String name)`**<br/>&bull; create a worksheet with `name` in workbook `wb`       |
-| `Void`    | **`removeWorksheet(Workbook wb, String name)`**<br/>&bull; remove a worksheet with `name` in workbook `wb`    |
+| Return    | Method                                                                                                                                                                                                                                                                              |
+| --------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Boolean` | **`hasWorksheet(Workbook wb, String name)`**<br/>&bull; if the workbook `wb` contains a worksheet with `name`                                                                                                                                                                       |
+| `Void`    | **`addWorksheet(Workbook wb, String name)`**<br/>&bull; create a worksheet with `name` in workbook `wb`                                                                                                                                                                             |
+| `Void`    | **`removeWorksheet(Workbook wb, String name)`**<br/>&bull; remove a worksheet with `name` in workbook `wb`                                                                                                                                                                          |
+| `Void`    | **`clearWorksheet(Optional Worksheet ws)`**<br/>&bull; clear the whole content of the specified worksheet. <br/>&bull;if worksheet is not specified, will clear the wrapped worksheet                                                                                               |
+| `Void`    | **`copyRange(Worksheet wsSrc, Variant startCell, Variant endCell, Worksheet wsTarget, Variant startCellTarget)`**<br/>&bull; copy the selected range from `wsSrc` to specific position in `wsTarget`<br/>&bull; `startCell`, `endCell`, `startCellTarget` are all `Array(row, col)` |
 
 #### Workbook
 
@@ -79,8 +81,8 @@ End Sub
 
 | Return    | Method                                                                                                                                                                                                                                                                                                                         |
 | --------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Long` | **`colLetterToNum(String s)`** <br/>&bull; column letter to number                                                                                                                                                                                                                                                             |
-| `String`  | **`colNumToLetter(Long n)`** <br/>&bull; column number to letter                                                                                                                                                                                                                                                            |
+| `Long`    | **`colLetterToNum(String s)`** <br/>&bull; column letter to number                                                                                                                                                                                                                                                             |
+| `String`  | **`colNumToLetter(Long n)`** <br/>&bull; column number to letter                                                                                                                                                                                                                                                               |
 | `Variant` | **`getRowColFromRangeSelector(String selector)`**<br/>&bull; convert range selector to Array(row, col), like `B5` to `Array(5, 2)`                                                                                                                                                                                             |
 | `String`  | **`getRangeSelectorFromRowCol(Variant rowCol)`**<br/>&bull; convert Array(row, col) to range selector, like `Array(5, 2)` to `B5`                                                                                                                                                                                              |
 | `Void`    | **`mkDir(String path)`**<br/>&bull; create the directory according to `path`, recursively create non-existing sub directories                                                                                                                                                                                                  |
@@ -92,6 +94,7 @@ End Sub
 | `Object`  | **`getAllFilePaths_R(String path, Optional Boolean needPath=false, Optional Variant level)`**<br/>&bull; return an `ArrayList<String>` of all file paths under the `path` directory and all its nested sub folders recursively<br/>&bull; if `level` is given, then only do `level` depth search. `level=0` means current path |
 | `Object`  | **`getAllSubDirs(String path)`**<br/>&bull; return an `ArrayList<String>` of all names of folders under `path` directory                                                                                                                                                                                                       |
 | `Object`  | **`getAllSubDirs_R(String path, Optional Boolean needPath=false, Optional Variant level)`**<br/>&bull; return an `ArrayList<String>` of all folder paths under the `path` directory and all its nest sub folders recursively<br/>&bull; if `level` is given, then only do `level` depth search. `level=0` means current path   |
+| `String`  | **`openFileDialog(Optional Variant extensions, Optional String title = "Please Select File")`**<br/>&bull; open the file selection dialog to let the user choose a file.<br/>&bull; default `extensions` is `Array("*.xlsx", "*.xls", "*.xlsm", "*.xlsb")`                                                                     |
 
 #### Data Structure
 
