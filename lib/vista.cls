@@ -1,4 +1,4 @@
-VERSION 1.1.1 CLASS
+VERSION 1.1.2 CLASS
 BEGIN
   MultiUse = -1  'True
 END
@@ -189,7 +189,7 @@ Public Sub mkWorkbook(ByVal path As String, Optional ByVal TEMPLATE_PATH As Stri
         Set wb = Workbooks.Add(TEMPLATE_PATH)
     End If
     With wb
-        .Title = filename
+        .title = filename
         .Subject = filename
         .SaveAs filename:=path
     End With
@@ -247,6 +247,14 @@ Public Sub removeWorksheet(ByRef wb As Workbook, ByVal name As String)
     Application.DisplayAlerts = False
     wb.Worksheets(name).Delete
     Application.DisplayAlerts = True
+End Sub
+
+Public Sub clearWorksheet(Optional ByRef ws As Worksheet)
+    If IsMissing(ws) Then
+        prWs.cells.Clear
+    Else
+        ws.cells.Clear
+    End If
 End Sub
 
 Public Function getAllFilenames(ByVal path As String) As Object
@@ -324,6 +332,27 @@ Private Sub getAllSubDirsHelper(ByRef folder As Variant, ByRef list As Object, B
         getAllSubDirsHelper subFolder, list, needPath, level
     Next subFolder
 enough:
+End Sub
+
+Public Function openFileDialog(Optional ByRef extensions As Variant, Optional ByVal title As String = "Please Select File") As String
+    Dim vPath As Variant
+    Dim fileTypes As String
+    If IsMissing(extensions) Then extensions = Array("*.xlsx", "*.xls", "*.xlsm", "*.xlsb")
+    fileTypes = Join(extensions, ";")
+    vPath = Application.GetOpenFilename(FileFilter:="Excel Workbooks (" & fileTypes & "), " & fileTypes, title:=title)
+    If vPath = False Then
+        openFileDialog = ""
+    Else
+        openFileDialog = vPath
+    End If
+End Function
+
+Public Sub copyRange(ByRef wsSrc As Worksheet, ByRef startCell As Variant, ByRef endCell As Variant, ByRef wsTarget As Worksheet, ByRef startCellTarget As Variant)
+    Dim srcRngSelector As String
+    Dim targetRngSelector As String
+    srcRngSelector = getRangeSelectorFromRowCol(startCell) & ":" & getRangeSelectorFromRowCol(endCell)
+    targetRngSelector = getRangeSelectorFromRowCol(startCellTarget)
+    wsSrc.Range(srcRngSelector).Copy Destination:=wsTarget.Range(targetRngSelector)
 End Sub
 
 ' ///////////////////////////////////////////////////////////
