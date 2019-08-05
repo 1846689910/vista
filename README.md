@@ -29,7 +29,19 @@ End Sub
 
 ###### return `Void` means a `Sub`
 
+<a id="top"></a>
+
 ### Methods
+
+- [**Critical**](#critical)
+- [**Row**](#row)
+- [**Column**](#column)
+- [**Worksheet**](#ws)
+- [**Workbook**](#wb)
+- [**Utils**](#utils)
+- [**Data Structure**](#ds)
+
+<a id="critical"></a>
 
 #### Critical
 
@@ -38,6 +50,10 @@ End Sub
 | `Void`    | **`init(Worksheet ws)`** <br/>&bull; initialize the created `Vista` instance and hook the instance with the specified Worksheet `ws`                                                                                                       |
 | `Void`    | **`sync()`**<br/>&bull; manually trigger properties update for the worksheet, include `lastRow` and `lastCol`<br/>&bull; should be used especially after the worksheet was directly manipulated by user insteadof operated through `vista` |
 | `Variant` | **`getFirstNonEmptyCell()`**<br/>&bull; return `Array(row as Long, col as Long)` to represent the position of the first non empty cell in worksheet<br/>&bull; if found, return `Array(row, col)`, otherwise return `Array(-1, -1)`        |
+
+[back to top](#top)
+
+<a id="row"></a>
 
 #### Row
 
@@ -49,6 +65,10 @@ End Sub
 | `Variant` | **`rowIndexOf(Long searchRow, Long startCol, String target, Optional Boolean exactMatch = False)`**<br/>&bull; return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchRow` and searched from `startCol` that contains content `target`<br/>&bull; if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>&bull; if not found, return `Array(-1, -1)`                     |
 | `Object`  | **`rowIndicesOf(Long searchRow, Long startCol, String target, Optional Boolean exactMatch = False)`**<br/>&bull; return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchRow` and searched from `startCol` that contains content `target`<br/>&bull; if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>&bull; if not found, return empty ArrayList |
 
+[back to top](#top)
+
+<a id="column"></a>
+
 #### Column
 
 | Return    | Method                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -58,6 +78,10 @@ End Sub
 | `Void`    | **`addCol(Long c)`**<br/>&bull; insert a new column at `c` th column, the new column is `c` th column                                                                                                                                                                                                                                                                                                                                                                                   |
 | `Variant` | **`colIndexOf(Long searchCol, Long startRow, String target, Optional Boolean exactMatch = False)`**<br/>&bull; return `Array(row as Long, col as Long)` to represent the position of the first cell found in `searchCol` and searched from `startRow` that contains content `target`<br/>&bull; if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>&bull; if not found, return `Array(-1, -1)`                   |
 | `Object`  | **`colIndexOf(Long searchCol, Long startRow, String target, Optional Boolean exactMatch = False)`**<br/>&bull; return `ArrayList<Array(row as Long, col as Long)>` to represent a list of position arrays of the cell found in `searchCol` and searched from `startRow` that contains content `target`<br/>&bull; if `exactMatch` then cell content should be exactly equal to `target`, otherwise cell content should contain `target`<br/>&bull; if not found, return empty ArrayList |
+
+[back to top](#top)
+
+<a id="ws"></a>
 
 #### Worksheet
 
@@ -70,6 +94,10 @@ End Sub
 | `Void`      | **`clearWorksheet(Optional Worksheet ws)`**<br/>&bull; clear the whole content of the specified worksheet. <br/>&bull;if worksheet is not specified, will clear the wrapped worksheet                                                                                               |
 | `Void`      | **`copyRange(Worksheet wsSrc, Variant startCell, Variant endCell, Worksheet wsTarget, Variant startCellTarget)`**<br/>&bull; copy the selected range from `wsSrc` to specific position in `wsTarget`<br/>&bull; `startCell`, `endCell`, `startCellTarget` are all `Array(row, col)` |
 
+[back to top](#top)
+
+<a id="wb"></a>
+
 #### Workbook
 
 | Return     | Method                                                                                                                                                                                                  |
@@ -77,6 +105,10 @@ End Sub
 | `Void`     | **`mkWorkbook(String path, Optional String TEMPLATE_PATH)`**<br/>&bull; create a workbook according to the path, path should include filename. <br/>&bull; user can also specified a template file path |
 | `Workbook` | **`openWorkbook(String path)`**<br/>&bull; return the opened workbook                                                                                                                                   |
 | `Void`     | **`saveasWorkbook(Workbook wb, String path)`**<br/>&bull; save the workbook `wb` in path, could also be used for rename                                                                                 |
+
+[back to top](#top)
+
+<a id="utils"></a>
 
 #### Utils
 
@@ -97,14 +129,20 @@ End Sub
 | `Object`  | **`getAllSubDirs_R(String path, Optional Boolean needPath=false, Optional Variant level)`**<br/>&bull; return an `ArrayList<String>` of all folder paths under the `path` directory and all its nest sub folders recursively<br/>&bull; if `level` is given, then only do `level` depth search. `level=0` means current path   |
 | `String`  | **`openFileDialog(Optional Variant extensions, Optional String title = "Please Select File")`**<br/>&bull; open the file selection dialog to let the user choose a file.<br/>&bull; default `extensions` is `Array("*.xlsx", "*.xls", "*.xlsm", "*.xlsb")`                                                                     |
 
+[back to top](#utils)
+
+<a id="ds"></a>
+
 #### Data Structure
 
-| Return   | Method                                                                                                                                                                                                                      |
-| -------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Object` | **`newArrayList()`**<br/>&bull; return a new instance of [`System.Collections.ArrayList`]()<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-arraylist) |
-| `Object` | **`newDictionary()`**<br/>&bull; return a new instance of `Scripting.Dictionary`<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-dictionary)           |
-| `Object` | **`newHashtable()`**<br/>&bull; return a new instance of `System.Collections.Hashtable`<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-hashtable)     |
-| `Object` | **`hashtableKeys(Object hashtable)`**<br/>&bull; return an `ArrayList<Key>` in hashtable                                                                                                                                    |
-| `Object` | **`hashtableValues(Object hashtable)`**<br/>&bull; return an `ArrayList<Value>` in hashtable                                                                                                                                |
-| `Object` | **`hashtableEntries(Object hashtable)`**<br/>&bull; return an `ArrayList<Array(Key, Value)>` in hashtable                                                                                                                   |
-| `Object` | **`newFs()`**<br/>&bull; return a new instance of `Scripting.FileSystemObject`                                                                                                                                              |
+| Return   | Method                                                                                                                                                                                             |
+| -------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Object` | **`newArrayList()`**<br/>&bull; return a new instance of [`System.Collections.ArrayList`](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-arraylist) |
+| `Object` | **`newDictionary()`**<br/>&bull; return a new instance of [`Scripting.Dictionary`](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-dictionary)       |
+| `Object` | **`newHashtable()`**<br/>&bull; return a new instance of [`System.Collections.Hashtable`](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-hashtable) |
+| `Object` | **`hashtableKeys(Object hashtable)`**<br/>&bull; return an `ArrayList<Key>` in hashtable                                                                                                           |
+| `Object` | **`hashtableValues(Object hashtable)`**<br/>&bull; return an `ArrayList<Value>` in hashtable                                                                                                       |
+| `Object` | **`hashtableEntries(Object hashtable)`**<br/>&bull; return an `ArrayList<Array(Key, Value)>` in hashtable                                                                                          |
+| `Object` | **`newFs()`**<br/>&bull; return a new instance of `Scripting.FileSystemObject`                                                                                                                     |
+
+[back to top](#top)
