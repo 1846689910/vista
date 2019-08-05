@@ -61,13 +61,14 @@ End Sub
 
 #### Worksheet
 
-| Return    | Method                                                                                                                                                                                                                                                                              |
-| --------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Boolean` | **`hasWorksheet(Workbook wb, String name)`**<br/>&bull; if the workbook `wb` contains a worksheet with `name`                                                                                                                                                                       |
-| `Void`    | **`addWorksheet(Workbook wb, String name)`**<br/>&bull; create a worksheet with `name` in workbook `wb`                                                                                                                                                                             |
-| `Void`    | **`removeWorksheet(Workbook wb, String name)`**<br/>&bull; remove a worksheet with `name` in workbook `wb`                                                                                                                                                                          |
-| `Void`    | **`clearWorksheet(Optional Worksheet ws)`**<br/>&bull; clear the whole content of the specified worksheet. <br/>&bull;if worksheet is not specified, will clear the wrapped worksheet                                                                                               |
-| `Void`    | **`copyRange(Worksheet wsSrc, Variant startCell, Variant endCell, Worksheet wsTarget, Variant startCellTarget)`**<br/>&bull; copy the selected range from `wsSrc` to specific position in `wsTarget`<br/>&bull; `startCell`, `endCell`, `startCellTarget` are all `Array(row, col)` |
+| Return      | Method                                                                                                                                                                                                                                                                              |
+| ----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Worksheet` | **`getWs()`**<br/>&bull; get the library wrapped worksheet                                                                                                                                                                                                                          |
+| `Boolean`   | **`hasWorksheet(Workbook wb, String name)`**<br/>&bull; if the workbook `wb` contains a worksheet with `name`                                                                                                                                                                       |
+| `Void`      | **`addWorksheet(Workbook wb, String name)`**<br/>&bull; create a worksheet with `name` in workbook `wb`                                                                                                                                                                             |
+| `Void`      | **`removeWorksheet(Workbook wb, String name)`**<br/>&bull; remove a worksheet with `name` in workbook `wb`                                                                                                                                                                          |
+| `Void`      | **`clearWorksheet(Optional Worksheet ws)`**<br/>&bull; clear the whole content of the specified worksheet. <br/>&bull;if worksheet is not specified, will clear the wrapped worksheet                                                                                               |
+| `Void`      | **`copyRange(Worksheet wsSrc, Variant startCell, Variant endCell, Worksheet wsTarget, Variant startCellTarget)`**<br/>&bull; copy the selected range from `wsSrc` to specific position in `wsTarget`<br/>&bull; `startCell`, `endCell`, `startCellTarget` are all `Array(row, col)` |
 
 #### Workbook
 
@@ -98,12 +99,12 @@ End Sub
 
 #### Data Structure
 
-| Return   | Method                                                                                                    |
-| -------- | :-------------------------------------------------------------------------------------------------------- |
-| `Object` | **`newArrayList()`**<br/>&bull; return a new instance of `System.Collections.ArrayList`                   |
-| `Object` | **`newDictionary()`**<br/>&bull; return a new instance of `Scripting.Dictionary`                          |
-| `Object` | **`newHashtable()`**<br/>&bull; return a new instance of `System.Collections.Hashtable`                   |
-| `Object` | **`hashtableKeys(Object hashtable)`**<br/>&bull; return an `ArrayList<Key>` in hashtable                  |
-| `Object` | **`hashtableValues(Object hashtable)`**<br/>&bull; return an `ArrayList<Value>` in hashtable              |
-| `Object` | **`hashtableEntries(Object hashtable)`**<br/>&bull; return an `ArrayList<Array(Key, Value)>` in hashtable |
-| `Object` | **`newFs()`**<br/>&bull; return a new instance of `Scripting.FileSystemObject`                            |
+| Return   | Method                                                                                                                                                                                                                      |
+| -------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Object` | **`newArrayList()`**<br/>&bull; return a new instance of [`System.Collections.ArrayList`]()<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-arraylist) |
+| `Object` | **`newDictionary()`**<br/>&bull; return a new instance of `Scripting.Dictionary`<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-dictionary)           |
+| `Object` | **`newHashtable()`**<br/>&bull; return a new instance of `System.Collections.Hashtable`<br/>&bull; check [API](https://github.com/1846689910/schoolproject/blob/master/concises/my-vba/vba.md#define-and-use-hashtable)     |
+| `Object` | **`hashtableKeys(Object hashtable)`**<br/>&bull; return an `ArrayList<Key>` in hashtable                                                                                                                                    |
+| `Object` | **`hashtableValues(Object hashtable)`**<br/>&bull; return an `ArrayList<Value>` in hashtable                                                                                                                                |
+| `Object` | **`hashtableEntries(Object hashtable)`**<br/>&bull; return an `ArrayList<Array(Key, Value)>` in hashtable                                                                                                                   |
+| `Object` | **`newFs()`**<br/>&bull; return a new instance of `Scripting.FileSystemObject`                                                                                                                                              |
